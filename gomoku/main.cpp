@@ -50,15 +50,7 @@ static void AISet(int AISave[21][21]) {
 static void Load() {
 	//窗口初始化
 	initgraph(630, 630, EX_NOCLOSE);
-	setbkcolor(RGB(205, 205, 193));
-	cleardevice();
-	setaspectratio(1, 1);
-	//画格子
-	setlinecolor(BLACK);
-	for (int i = 1;i <= 20;i++) {
-		line(30 * i, 30, 30 * i, 600);
-		line(30, 30 * i, 600, 30 * i);
-	}
+	loadimage(NULL, _T("assets\\background1.png"));
 }
 
 //打印
@@ -430,20 +422,27 @@ static void draw(char board[21][21]) {
 
 int main() {
 	//初始化
+
 	Sleep(500);
-	Load();
+	bool firstplace = 1;
 	char board[21][21]{};
-	boardSet(board);
 	int AISave[21][21]{};
 	int AIAt[21][21]{};
+	boardSet(board);
 	AISet(AIAt);
 	AISet(AISave);
+	if (MessageBox(NULL, _T("是否先手？"), _T("提示"), MB_YESNO) == IDNO) {
+		firstplace = 0;
+	}
+	Load();
+	setbkmode(TRANSPARENT);
 	settextcolor(BLACK);
 	outtextxy(0, 0, _T("按ESC退出程序"));
-	Sleep(500);
-	if (MessageBox(NULL, _T("是否先手？"), _T("提示"), MB_YESNO) == IDNO) {
+	if (firstplace == 0) {
+		Sleep(1000);
 		botMain(board, AISave, AIAt);
 	}
+	
 
 	while (1) {
 		//system("cls");
