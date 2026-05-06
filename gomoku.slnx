@@ -4,4 +4,7 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="gomoku/gomoku.vcxproj" Id="bae717f6-9e7d-4525-871a-b87477d293c6" />
+  <Project Path="五子棋/五子棋.vdproj" Type="Installer">
+    <Build />
+  </Project>
 </Solution>

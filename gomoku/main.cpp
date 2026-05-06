@@ -145,9 +145,18 @@ static void Hplace(int x, int y, char board[21][21]) {
 
 //机器方下棋绘画
 static void Bplace(int x, int y, char board[21][21]) {
+	static int lastchess[2] = {x,y};
+	setfillcolor(WHITE);
+	solidcircle(lastchess[0] * 30 + 15, lastchess[1] * 30 + 15, 3);
 	board[y][x] = BC;
 	setfillcolor(WHITE);
 	solidcircle(x * 30 + 15, y * 30 + 15, 12);
+	setfillcolor(RED);
+	solidcircle(x * 30 + 15, y * 30 + 15, 3);
+	lastchess[0] = x;
+	lastchess[1] = y;
+	
+
 	if (judgmentWin(board, x, y, BC)) {
 		//输出胜利
 		setbkmode(TRANSPARENT);
