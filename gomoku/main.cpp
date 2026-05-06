@@ -6,6 +6,7 @@
 
 
 char HC = '@', BC = 'O';
+//ysnb
 
 //随机数生成
 static short random(short min, short max) {
